@@ -1,6 +1,6 @@
 # Capstone: Restaurant Reservation System
 
-//url for deployed site
+"https://the-reserving-restaurants-with-adesewa.onrender.com"
 
 
 > You have been hired as a full stack developer at _Periodic Tables_, a startup that is creating a reservation system for fine dining restaurants.
