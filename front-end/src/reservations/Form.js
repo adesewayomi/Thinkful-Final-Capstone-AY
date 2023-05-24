@@ -45,15 +45,16 @@ export default function Form({
           </div>
           <div className="pb-1">
             <input
-              type="tel"
-              name="mobile_number"
-              className="form-control"
-              id="mobile_number"
-              placeholder={initialformData?.mobile_number || "Mobile number"}
-              value={initialformData?.mobile_number}
-              onChange={handleFormChange}
-              required
-            />
+               type="tel"
+               name="mobile_number"
+               className="form-control"
+               id="mobile_number"
+               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+               placeholder={initialformData?.mobile_number || "Mobile number(###-###-####)"}
+               value={initialformData?.mobile_number}
+               onChange={handleFormChange}
+               required
+             />
           </div>
           <div className="pb-1">
             <input
