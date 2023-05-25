@@ -48,7 +48,10 @@ export default function Form({
                type="tel"
                name="mobile_number"
                className="form-control"
+               onkeypress="return onlyNumberKey(event)"
+               maxlength="11"
                id="mobile_number"
+               size="50%"
                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                placeholder={initialformData?.mobile_number || "Mobile number(###-###-####)"}
                value={initialformData?.mobile_number}
