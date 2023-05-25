@@ -95,11 +95,14 @@ function isNotOnTuesday(req, res, next) {
 }
 
 function isInTheFuture(req, res, next) {
-  const date = res.locals.date;
+  const { reservation_date, reservation_time } = res.body.date;
+  const setDate = new Date(`${reservation_date}T${reservation_time}`);
   const today = new Date();
 
   if (date < today) {
-    return next({ status: 400, message: "Must be a future date" });
+     next({ status: 400,
+       message: "Must be a future date",
+     });
   }
 
   next();
