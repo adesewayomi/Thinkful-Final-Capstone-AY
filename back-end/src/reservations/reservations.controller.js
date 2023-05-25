@@ -67,6 +67,19 @@ function isValidReservation(req, res, next) {
   next();
 }
 
+const mobileNumberExists = async (req, res, next) => {
+  if(req.params.reservation_option === "status") return next();
+  const { mobile_number } = req.body.data;
+  if (mobile_number && mobile_number !== "") {
+    return next();
+  } else {
+    return next({
+      message: "Body of Data must contain mobile_number",
+      status: 400,
+    });
+  }
+}
+
 function isNotOnTuesday(req, res, next) {
   const { reservation_date } = req.body.data;
   const [year, month, day] = reservation_date.split("-");
@@ -200,7 +213,7 @@ async function list(req, res) {
 module.exports = {
   create: [
     asyncErrorBoundary(isValidReservation),
-    isNotOnTuesday,
+    asyncErrorBoundary(mobileNumberExists),
     isInTheFuture,
     isWithinOpenHours,
     hasBookedStatus,
@@ -211,6 +224,7 @@ module.exports = {
     asyncErrorBoundary(reservationExists),
     isValidStatus,
     isAlreadyFinished,
+    asyncErrorBoundary(mobileNumberExists),
     asyncErrorBoundary(update),
   ],
   modify: [
